@@ -15,7 +15,7 @@ public class SpringbootAwsSnsApplication {
     @Autowired
     private AmazonSNSClient snsClient;
 
-    String TOPIC_ARN="";
+    String TOPIC_ARN="arn:aws:sns:us-east-1:484958538548";
 
     @GetMapping("/addSubscription/{email}")
     public String addSubscription(@PathVariable String email){
@@ -26,7 +26,7 @@ public class SpringbootAwsSnsApplication {
 
     @GetMapping("/sendNotification")
     public String publishMessageToTopic(){
-        PublishRequest publishRequest=new PublishRequest(TOPIC_ARN, buildEmailBody(), subject="Netwrok issue")
+        PublishRequest publishRequest=new PublishRequest(TOPIC_ARN, buildEmailBody(), subject="Network issue")
          snsClient.publish(publishRequest);
         return "Notification send Successfully !";
     }
